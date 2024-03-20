@@ -4,12 +4,12 @@ const carroSchema = new Schema(
   {
     marca: { type: Schema.Types.ObjectId, ref: "Marca" },
     modelo: { type: Schema.Types.ObjectId, ref: "Modelo" },
-    imagenes: { type: String },
-    vendido: Boolean,
+    imagenes: [{ type: String }],
+    nuevo: Boolean,
     usado: Boolean,
     cantidad: Number,
     kilometraje: Number,
-    precio: Number,
+    precio: String,
   },
   {
     timestamps: true,
