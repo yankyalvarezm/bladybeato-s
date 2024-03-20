@@ -5,8 +5,6 @@ const Modelo = require("../models/Modelo.model");
 const Carro = require("../models/Carro.model");
 const mongoose = require("mongoose");
 const fileUploader = require("../configs/cloudinary.config");
-const sharp = require("sharp");
-const fs = require("fs");
 
 router.post("/create", fileUploader.array("image", 8), async (req, res) => {
   console.log("req.files:", req.files);
