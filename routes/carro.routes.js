@@ -169,16 +169,23 @@ router.get("/:marcaId/findAll", async (req, res) => {
 });
 
 router.get("/:carroId/find", async (req, res) => {
+  console.log("EndPoint Hit");
   const { carroId } = req.params;
 
   try {
-    const carro = await Carro.findById(carroId).populate("marca");
+    const carro = await Carro.findById(carroId)
+      .populate("marca", "name")
+      .populate("modelo", "nombre year");
+
+    console.log("carro:", carro);
+
     if (!carro) {
+      console.log("no carro found");
       return res
         .status(404)
         .json({ success: false, message: "Carro no encontrado." });
     }
-    res.status(200).json({ success: true, carro });
+    return res.status(200).json({ success: true, carro });
   } catch (error) {
     console.error(error);
     res.status(500).json({
